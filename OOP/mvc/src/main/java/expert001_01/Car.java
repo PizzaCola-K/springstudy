@@ -3,9 +3,8 @@ package expert001_01;
 public class Car {
     Tire tire;
 
-    public Car() {
-        this.tire = new KoreaTire();
-        //this.tire = new AmericaTire();
+    public Car(Tire tire) {
+        this.tire = tire;
     }
 
     public String getTireBrand() {

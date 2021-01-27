@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MainForAssembler {
+public class MainForSpring {
 
     private static ApplicationContext ctx = null;
 
@@ -31,7 +31,11 @@ public class MainForAssembler {
             } else if (command.startsWith("change ")) {
                 processChangeCommand(command.split(" "));
                 continue;
+            } else if (command.equals("list")) {
+                processListCommand();
+                continue;
             }
+
             printHelp();
         }
     }
@@ -79,6 +83,11 @@ public class MainForAssembler {
             System.out.println("이메일과 암호가 일치하지 않습니다.");
         }
         System.out.println();
+    }
+
+    private static void processListCommand() {
+        MemberListPrinter listPrinter = ctx.getBean("listPrinter", MemberListPrinter.class);
+        listPrinter.printAll();
     }
 
     private static void printHelp() {

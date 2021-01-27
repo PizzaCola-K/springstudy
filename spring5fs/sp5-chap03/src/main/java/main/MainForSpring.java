@@ -37,10 +37,18 @@ public class MainForSpring {
             } else if (command.startsWith("info ")) {
                 processInfoCommand(command.split(" "));
                 continue;
+            } else if (command.equals("version")) {
+                processVersionCommand();
+                continue;
             }
 
             printHelp();
         }
+    }
+
+    private static void processVersionCommand() {
+        VersionPrinter versionPrinter = ctx.getBean("versionPrinter", VersionPrinter.class);
+        versionPrinter.print();
     }
 
     private static void processInfoCommand(String[] arg) {
@@ -111,6 +119,7 @@ public class MainForSpring {
         System.out.println("change 이메일 현재비밀번호 변경비밀번호");
         System.out.println("list");
         System.out.println("info 이메일");
+        System.out.println("version");
         System.out.println("exit");
         System.out.println();
     }

@@ -1,16 +1,15 @@
 package spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.lang.Nullable;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 
 public class MemberPrinter {
     private DateTimeFormatter dateTimeFormatter;
 
     @Autowired
-    public void setDateTimeFormatter(Optional<DateTimeFormatter> dateTimeFormatter) {
-        this.dateTimeFormatter = dateTimeFormatter.orElse(null);
+    public void setDateTimeFormatter(@Nullable DateTimeFormatter dateTimeFormatter) {
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 
     public void print(Member member) {

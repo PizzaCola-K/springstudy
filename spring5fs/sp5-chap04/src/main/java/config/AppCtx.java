@@ -18,6 +18,11 @@ public class AppCtx {
     }
 
     @Bean
+    public MemberSummaryPrinter memberSummaryPrinter() {
+        return new MemberSummaryPrinter();
+    }
+
+    @Bean
     public MemberRegisterService memberRegSvc() {
         return new MemberRegisterService();
     }

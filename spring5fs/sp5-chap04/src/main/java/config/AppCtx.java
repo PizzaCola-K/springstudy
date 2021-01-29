@@ -1,16 +1,13 @@
 package config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import spring.*;
 
 @Configuration
+@ComponentScan(basePackages = {"spring"})
 public class AppCtx {
-
-    @Bean
-    public MemberDao memberDao() {
-        return new MemberDao();
-    }
 
     @Bean
     public MemberPrinter memberPrinter() {
@@ -20,26 +17,6 @@ public class AppCtx {
     @Bean
     public MemberSummaryPrinter memberSummaryPrinter() {
         return new MemberSummaryPrinter();
-    }
-
-    @Bean
-    public MemberRegisterService memberRegSvc() {
-        return new MemberRegisterService();
-    }
-
-    @Bean
-    public ChangePasswordService changePwdSvc() {
-        return new ChangePasswordService();
-    }
-
-    @Bean
-    public MemberListPrinter listPrinter() {
-        return new MemberListPrinter();
-    }
-
-    @Bean
-    public MemberInfoPrinter infoPrinter() {
-        return new MemberInfoPrinter();
     }
 
     @Bean

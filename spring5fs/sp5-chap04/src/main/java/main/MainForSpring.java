@@ -65,7 +65,7 @@ public class MainForSpring {
             printHelp();
             return;
         }
-        MemberRegisterService regSvc = ctx.getBean("memberRegSvc", MemberRegisterService.class);
+        MemberRegisterService regSvc = ctx.getBean("memberRegisterService", MemberRegisterService.class);
         RegisterRequest req = new RegisterRequest();
         req.setEmail(arg[1]);
         req.setName(arg[2]);
@@ -92,7 +92,7 @@ public class MainForSpring {
         }
 
         ChangePasswordService changePasswordService =
-                ctx.getBean("changePwdSvc", ChangePasswordService.class);
+                ctx.getBean("changePasswordService", ChangePasswordService.class);
 
         try {
             changePasswordService.changePassword(arg[1], arg[2], arg[3]);

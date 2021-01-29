@@ -3,13 +3,14 @@ package spring;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class MemberPrinter {
     private DateTimeFormatter dateTimeFormatter;
 
-    @Autowired(required = false)
-    public void setDateTimeFormatter(DateTimeFormatter dateTimeFormatter) {
-        this.dateTimeFormatter = dateTimeFormatter;
+    @Autowired
+    public void setDateTimeFormatter(Optional<DateTimeFormatter> dateTimeFormatter) {
+        this.dateTimeFormatter = dateTimeFormatter.orElse(null);
     }
 
     public void print(Member member) {

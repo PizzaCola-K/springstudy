@@ -2,7 +2,11 @@ package spring;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
+
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public class MemberDao {
@@ -23,6 +27,20 @@ public class MemberDao {
     }
 
     public void insert(Member member) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(con -> {
+            PreparedStatement pstmt = con.prepareStatement(
+                    "INSERT INTO MEMBER (EMAIL, PASSWORD, NAME, REGDATE) " +
+                        "VALUES (?, ?, ?, ?)", new String[] {"ID"}
+            );
+            pstmt.setString(1, member.getEmail());
+            pstmt.setString(2, member.getPassword());
+            pstmt.setString(3, member.getName());
+            pstmt.setString(4, String.valueOf(member.getRegisterDateTime()));
+            return pstmt;
+        }, keyHolder);
+        Number keyValue = keyHolder.getKey();
+        member.setId(keyValue.longValue());
     }
 
     public void update(Member member) {

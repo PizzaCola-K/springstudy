@@ -3,9 +3,10 @@ package config;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import spring.MemberDao;
 
 @Configuration
-public class DbConfig {
+public class AppCtx {
 
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
@@ -22,5 +23,9 @@ public class DbConfig {
         return ds;
     }
 
+    @Bean
+    public MemberDao memberDao() {
+        return new MemberDao(dataSource());
+    }
 
 }

@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.7.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+dependencies {
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    providedRuntime group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.3'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.3'
+    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.3'
+    implementation group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '10.0.0'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
